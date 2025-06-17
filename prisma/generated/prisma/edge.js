@@ -126,7 +126,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Projects\\Miyabi House - Japan foods\\server\\prisma\\generated\\prisma",
+      "value": "/home/abdulaziz/Projects/Miyabi House (Portfolio)/miyabi-server/prisma/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -135,12 +135,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Projects\\Miyabi House - Japan foods\\server\\prisma\\schema.prisma",
+    "sourceFilePath": "/home/abdulaziz/Projects/Miyabi House (Portfolio)/miyabi-server/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

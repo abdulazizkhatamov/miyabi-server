@@ -1,6 +1,10 @@
 import { PrismaClient } from "./generated/prisma";
 import argon2 from "argon2";
+import dotenv from "dotenv";
+dotenv.config();
+
 const prisma = new PrismaClient();
+
 async function main() {
   const dummyAdmin = {
     email: process.env.SUPER_ADMIN_EMAIL || "t@t.com",
@@ -9,6 +13,8 @@ async function main() {
   };
 
   const hashedPassword = await argon2.hash(dummyAdmin.password);
+
+  console.log("Processing...");
 
   await prisma.admin.upsert({
     where: { email: dummyAdmin.email },
@@ -22,7 +28,11 @@ async function main() {
 }
 main()
   .then(async () => {
+    console.log("Disconnecting...");
+
     await prisma.$disconnect();
+
+    console.log("Disconnected.");
   })
   .catch(async (e) => {
     console.error(e);
