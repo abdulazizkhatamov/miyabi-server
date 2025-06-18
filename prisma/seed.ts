@@ -23,6 +23,7 @@ async function main() {
       email: dummyAdmin.email,
       name: dummyAdmin.name,
       password: hashedPassword,
+      roles: ["super_admin"],
     },
   });
 }

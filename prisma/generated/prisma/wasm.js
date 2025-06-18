@@ -125,8 +125,38 @@ exports.Prisma.AdminScalarFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  roles: 'roles'
+};
+
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  image: 'image',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.DishScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  portions: 'portions',
+  image: 'image',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  category_id: 'category_id'
+};
+
+exports.Prisma.IngredientScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  stock: 'stock',
+  price: 'price',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  dish_id: 'dish_id'
 };
 
 exports.Prisma.SortOrder = {
@@ -139,9 +169,21 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.staff_roles = exports.$Enums.staff_roles = {
+  super_admin: 'super_admin',
+  admin: 'admin',
+  driver: 'driver'
+};
 
 exports.Prisma.ModelName = {
-  Admin: 'Admin'
+  admin: 'admin',
+  category: 'category',
+  dish: 'dish',
+  ingredient: 'ingredient'
 };
 
 /**

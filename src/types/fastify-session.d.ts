@@ -1,4 +1,5 @@
 import "@fastify/session";
+import { staff_roles } from "../../prisma/generated/prisma";
 
 // 2. Declare module augmentation
 declare module "@fastify/session" {
@@ -7,6 +8,7 @@ declare module "@fastify/session" {
       id: string;
       name: string;
       email: string;
+      roles: staff_roles[];
       // Add other user properties as needed
     };
   }

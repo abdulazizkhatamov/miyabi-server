@@ -14,13 +14,63 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Admin {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model admin {
+  id         String   @id @default(cuid())
+  name       String
+  email      String   @unique
+  password   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  roles staff_roles[]
 
   @@map("admins")
+}
+
+model category {
+  id         String   @id @default(cuid())
+  name       String
+  image      String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  dishes dish[]
+
+  @@map("categories")
+}
+
+model dish {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  portions    Int
+  image       String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  ingredients ingredient[]
+  category    category     @relation(fields: [category_id], references: [id])
+  category_id String
+
+  @@map("dishes")
+}
+
+model ingredient {
+  id         String   @id @default(cuid())
+  name       String
+  stock      Int
+  price      Decimal  @db.Money
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  dish    dish?   @relation(fields: [dish_id], references: [id])
+  dish_id String?
+
+  @@map("ingredients")
+}
+
+enum staff_roles {
+  super_admin
+  admin
+  driver
 }

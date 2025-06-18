@@ -65,6 +65,7 @@ const authRoute: FastifyPluginAsync = async (fastify): Promise<void> => {
         id: admin.id,
         name: admin.name,
         email: admin.email,
+        roles: admin.roles,
       };
 
       return reply.status(200).send({
@@ -138,6 +139,7 @@ const authRoute: FastifyPluginAsync = async (fastify): Promise<void> => {
           name: admin.name,
           id: admin.id,
           email: admin.email,
+          roles: admin.roles,
         };
         return reply.status(201).send({
           message: "Admin created successfully. Please verify your email.",
