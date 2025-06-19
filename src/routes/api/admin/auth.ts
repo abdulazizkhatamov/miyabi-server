@@ -2,20 +2,13 @@
 import { FastifyPluginAsync } from "fastify";
 import argon2 from "argon2";
 import prisma from "../../../lib/prisma";
+import { ensureAuthenticated, ensureRole } from "../../../utils/auth";
 
 const authRoute: FastifyPluginAsync = async (fastify): Promise<void> => {
   // Protected route example
   fastify.get("/me", async (request, reply) => {
-    if (!request.session.admin)
-      return reply.status(401).send({ error: "Unauthorized" });
-
-    const admin = await prisma.admin.findUnique({
-      where: { email: request.session.admin.email },
-    });
-
-    if (!admin) {
-      return reply.status(404).send({ message: "Failed to verify session." });
-    }
+    if (!ensureAuthenticated(request, reply)) return;
+    if (!ensureRole(request, reply, ["super_admin", "admin", "driver"])) return;
 
     return { admin: request.session.admin };
   });
